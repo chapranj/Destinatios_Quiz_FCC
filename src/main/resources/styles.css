@@ -1,0 +1,19 @@
+.mainPane{
+    -fx-background-color: #f2f2f2; /* Container background color (light gray) */
+    -fx-padding: 20px; /* Container padding */
+    -fx-spacing: 10px; /* Spacing between buttons in the container */
+}
+
+
+.countryButton {
+    -fx-background-color: #3498db; /* Button background color */
+    -fx-text-fill: #ffffff; /* Button text color */
+    -fx-font-size: 18px; /* Button font size */
+    -fx-font-weight: bold; /* Button font weight */
+    -fx-padding: 10px 20px; /* Button padding */
+    -fx-background-radius: 5px; /* Rounded corners for the button */
+}
+
+.countryButton:hover {
+    -fx-background-color: #2980b9; /* Hover background color */
+}

@@ -13,6 +13,8 @@ public class Runner extends Application {
         primaryStage.setTitle("Destinations Quiz");
         primaryStage.show();
         theFirstScene = CreateSelectCountriesScene(primaryStage);
+        theFirstScene.getStylesheets().add("styles.css");
+
         primaryStage.setScene(theFirstScene);
     }
 }

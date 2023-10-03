@@ -8,6 +8,7 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -29,19 +30,29 @@ public class Quiz {
 //    private static ScrollPane rootScroll = new ScrollPane();
     private static VBox root = new VBox();
 
+//    public static ArrayList<String> answers = new ArrayList<>();
+
     public void CreateQuizScene(Stage primaryStage){
         Button submitButton = new Button("SUBMIT");
+        Button backButton = new Button("BACK");
+//        submitButton.setPrefSize(15,15);
         ScrollPane rootScroll = new ScrollPane();
 
         submitButton.setOnAction(e->{
             try {
                 onSubmit(primaryStage);
+
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }
         });
+//        backButton.setOnAction(actionEvent -> {
+//            primaryStage.setScene(Runner.theFirstScene);
+//
+//        });
         System.out.println("Clicked Checkpoint #4");
         root.getChildren().add(submitButton);
+//        root.getChildren().add(backButton);
 
         rootScroll.setContent(root);
 
@@ -59,6 +70,7 @@ public class Quiz {
         System.out.println("Clicked Checkpoint #2");
         BufferedReader reader;
         countrySelected = btn.getText();
+        System.out.println(countrySelected);
         reader = new BufferedReader(new FileReader("TextFiles/questions.txt"));
         String line = reader.readLine();
         while (!(line.equals(countrySelected))){
@@ -68,11 +80,13 @@ public class Quiz {
                 VBox questionVBOX = new VBox();
                 ToggleGroup question = new ToggleGroup();
                 Text questionText = new Text(reader.readLine());
+                questionText.setFont(Font.font(20));
                 questionVBOX.getChildren().add(questionText);
                 for (int k = 0; k < NUMBEROFOPTIONS;k++){
                     RadioButton radioButton = new RadioButton();
                     radioButton.setText(reader.readLine());
                     radioButton.setToggleGroup(question);
+                    radioButton.setFont(Font.font(19));
                     questionVBOX.getChildren().add(radioButton);
                 }
                 questionGroup.add(question);
@@ -92,6 +106,9 @@ public class Quiz {
         Answer ans = new Answer();
         int Score = ans.checkAnswer(answers, primaryStage);
         Scene finalScene = ans.scoreCheck(Score, primaryStage);
+        System.out.println(Score);
         primaryStage.setScene(finalScene);
+        System.out.println(answers);
+        answers.clear();
     }
 }
